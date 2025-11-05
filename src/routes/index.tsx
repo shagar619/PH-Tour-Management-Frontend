@@ -4,6 +4,7 @@ import { createBrowserRouter } from "react-router";
 
 
 export const router = createBrowserRouter([
+
 {
      Component: App,
      path: "/",
@@ -15,4 +16,6 @@ export const router = createBrowserRouter([
      
      ],
 },
+
+
 ]);
