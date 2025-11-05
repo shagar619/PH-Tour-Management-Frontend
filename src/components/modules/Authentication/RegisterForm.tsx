@@ -15,17 +15,21 @@ import { Link, useNavigate } from "react-router";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
+import Password from "@/components/ui/Password";
+
 
 const registerSchema = z
 .object({
      name: z
           .string()
-          .min(3, {
-     error: "Name is too short",
+          .min(3, {error: "Name is too short",
      })
           .max(50),
+
      email: z.email(),
+
      password: z.string().min(8, { error: "Password is too short" }),
+
      confirmPassword: z
           .string()
           .min(8, { error: "Confirm Password is too short" }),
@@ -33,7 +37,7 @@ const registerSchema = z
      .refine((data) => data.password === data.confirmPassword, {
      message: "Password do not match",
      path: ["confirmPassword"],
-     });
+});
 
 export function RegisterForm({
      className,
@@ -41,6 +45,7 @@ export function RegisterForm({
 }: React.HTMLAttributes<HTMLDivElement>) {
      
 const [register] = useRegisterMutation();
+
 const navigate = useNavigate();
 
 const form = useForm<z.infer<typeof registerSchema>>({
@@ -51,14 +56,15 @@ const form = useForm<z.infer<typeof registerSchema>>({
           password: "",
           confirmPassword: "",
      },
-     });
+});
 
 const onSubmit = async (data: z.infer<typeof registerSchema>) => {
-const userInfo = {
+
+     const userInfo = {
      name: data.name,
      email: data.email,
      password: data.password,
-};
+     };
 
      try {
      const result = await register(userInfo).unwrap();
@@ -82,6 +88,8 @@ return (
      <div className="grid gap-6">
      <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          
+          {/* Name field */}
           <FormField
                control={form.control}
                name="name"
@@ -98,6 +106,8 @@ return (
                </FormItem>
           )}
           />
+
+          {/* E-mail field */}
           <FormField
                control={form.control}
                name="email"
@@ -118,6 +128,8 @@ return (
                </FormItem>
           )}
           />
+
+          {/* Password field */}
           <FormField
                control={form.control}
                name="password"
@@ -125,15 +137,14 @@ return (
                <FormItem>
                <FormLabel>Password</FormLabel>
                <FormControl>
-                    {/* <Password {...field} /> */}
+                    <Password {...field} />
                </FormControl>
-               <FormDescription className="sr-only">
-                    This is your public display name.
-               </FormDescription>
                <FormMessage />
                </FormItem>
                )}
           />
+
+          {/* Confirm password */}
           <FormField
                control={form.control}
                name="confirmPassword"
@@ -141,11 +152,8 @@ return (
                <FormItem>
                <FormLabel>Confirm Password</FormLabel>
                <FormControl>
-                    {/* <Password {...field} /> */}
+                    <Password {...field} />
                </FormControl>
-               <FormDescription className="sr-only">
-                    This is your public display name.
-               </FormDescription>
                <FormMessage />
                </FormItem>
           )}
