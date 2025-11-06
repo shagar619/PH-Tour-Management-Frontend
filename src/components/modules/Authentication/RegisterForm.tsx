@@ -16,6 +16,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import Password from "@/components/ui/Password";
+import { useRegisterMutation } from "@/redux/features/auth/auth.api";
 
 
 const registerSchema = z
@@ -44,7 +45,7 @@ export function RegisterForm({
      ...props
 }: React.HTMLAttributes<HTMLDivElement>) {
      
-const [register] = useRegisterMutation();
+const [ register ] = useRegisterMutation();
 
 const navigate = useNavigate();
 
@@ -69,7 +70,7 @@ const onSubmit = async (data: z.infer<typeof registerSchema>) => {
      try {
      const result = await register(userInfo).unwrap();
      console.log(result);
-     toast.success("User created successfully");
+     toast.success("User created successfully!");
      navigate("/verify");
      } catch (error) {
      console.error(error);
@@ -158,7 +159,7 @@ return (
                </FormItem>
           )}
           />
-          <Button type="submit" className="w-full">
+          <Button type="submit" className="w-full cursor-pointer">
                Submit
           </Button>
           </form>
