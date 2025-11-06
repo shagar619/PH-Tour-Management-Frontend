@@ -72,6 +72,7 @@ const onSubmit = async (data: z.infer<typeof registerSchema>) => {
      console.log(result);
      toast.success("User created successfully!");
      navigate("/verify");
+     
      } catch (error) {
      console.error(error);
      }

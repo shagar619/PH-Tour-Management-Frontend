@@ -18,7 +18,7 @@ const authApi = baseApi.injectEndpoints({
           data: userInfo,
      }),
      }),
-     }),
+}),
 });
 
 export const { useRegisterMutation, useLoginMutation } = authApi;

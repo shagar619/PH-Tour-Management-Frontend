@@ -27,7 +27,9 @@ export function LoginForm({
      try {
      const res = await login(data).unwrap();
      console.log(res);
+
      } catch (err: any) {
+          
      console.error(err);
 
      if (err.status === 401) {
@@ -86,7 +88,7 @@ return (
           )}
           />
 
-          <Button type="submit" className="w-full">
+          <Button type="submit" className="w-full cursor-pointer">
                Login
           </Button>
           </form>
