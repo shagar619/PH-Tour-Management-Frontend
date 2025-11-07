@@ -22,12 +22,8 @@ import {
      InputOTPSlot,
 } from "@/components/ui/input-otp";
 import { cn } from "@/lib/utils";
-import {
-  useSendOtpMutation,
-  useVerifyOtpMutation,
-} from "@/redux/features/auth/auth.api";
+import { useSendOtpMutation, useVerifyOtpMutation } from "@/redux/features/auth/auth.api";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Dot } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router";
@@ -57,6 +53,7 @@ export default function Verify() {
 });
 
      const handleSendOtp = async () => {
+          
      const toastId = toast.loading("Sending OTP");
 
      try {
@@ -66,7 +63,7 @@ export default function Verify() {
      if (res.success) {
           toast.success("OTP Sent", { id: toastId });
           setConfirmed(true);
-          setTimer(5);
+          setTimer(120);
      }
      } catch (err) {
      console.log(err);
@@ -74,6 +71,7 @@ export default function Verify() {
 };
 
      const onSubmit = async (data: z.infer<typeof FormSchema>) => {
+
      const toastId = toast.loading("Verifying OTP");
      const userInfo = {
           email,
@@ -81,10 +79,13 @@ export default function Verify() {
      };
 
      try {
+
      const res = await verifyOtp(userInfo).unwrap();
+
      if (res.success) {
           toast.success("OTP Verified", { id: toastId });
           setConfirmed(true);
+          navigate("/");
      }
      } catch (err) {
      console.log(err);
@@ -98,14 +99,16 @@ export default function Verify() {
   //     }
   //   }, [email]);
 
+
+
      useEffect(() => {
+
      if (!email || !confirmed) {
           return;
      }
 
      const timerId = setInterval(() => {
           setTimer((prev) => (prev > 0 ? prev - 1 : 0));
-          console.log("Tick");
      }, 1000);
 
      return () => clearInterval(timerId);
@@ -117,7 +120,9 @@ export default function Verify() {
 return (
 
 <div className="grid place-content-center h-screen">
+
      {confirmed ? (
+
      <Card>
           <CardHeader>
           <CardTitle className="text-xl">Verify your email address</CardTitle>
@@ -149,7 +154,6 @@ return (
                          <InputOTPGroup>
                               <InputOTPSlot index={2} />
                          </InputOTPGroup>
-                         <Dot />
                          <InputOTPGroup>
                               <InputOTPSlot index={3} />
                          </InputOTPGroup>
@@ -184,12 +188,14 @@ return (
           </Form>
           </CardContent>
           <CardFooter className="flex justify-end">
-          <Button form="otp-form" type="submit">
+          <Button form="otp-form" type="submit" className="cursor-pointer">
                Submit
           </Button>
           </CardFooter>
      </Card>
+
      ) : (
+
      <Card>
           <CardHeader>
           <CardTitle className="text-xl">Verify your email address</CardTitle>
@@ -198,12 +204,13 @@ return (
           </CardDescription>
           </CardHeader>
           <CardFooter className="flex justify-end">
-          <Button onClick={handleSendOtp} className="w-[300px]">
+          <Button onClick={handleSendOtp} className="w-[300px] cursor-pointer">
                Confirm
           </Button>
           </CardFooter>
      </Card>
      )}
+
 </div>
 );
 }
