@@ -27,8 +27,8 @@ export function LoginForm({
 
      //! For development only
      defaultValues: {
-          email: "super@gmail.com",
-          password: "123456789",
+          email: "ashagar619@gmail.com",
+          password: "123AAaa$",
      },
 });
      
