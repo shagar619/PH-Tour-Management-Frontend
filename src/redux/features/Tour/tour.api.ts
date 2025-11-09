@@ -13,6 +13,14 @@ endpoints: (builder) => ({
      invalidatesTags: ["TOUR"],
      }),
 
+     removeTourType: builder.mutation({
+     query: (tourTypeId) => ({
+          url: `/tour/tour-types/${tourTypeId}`,
+          method: "DELETE",
+     }),
+     invalidatesTags: ["TOUR"],
+     }),
+
      getTourTypes: builder.query({
      query: () => ({
           url: "/tour/tour-types",
@@ -28,5 +36,6 @@ endpoints: (builder) => ({
 
 export const { 
      useGetTourTypesQuery, 
-     useAddTourTypeMutation 
+     useAddTourTypeMutation,
+     useRemoveTourTypeMutation
 } = tourApi;

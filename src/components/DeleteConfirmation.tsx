@@ -17,9 +17,10 @@ interface IProps {
 }
 
 export function DeleteConfirmation({ children, onConfirm }: IProps) {
+
      const handleConfirm = () => {
           onConfirm();
-};
+     };
 
 return (
      <AlertDialog>
@@ -33,8 +34,8 @@ return (
           </AlertDialogDescription>
      </AlertDialogHeader>
      <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={handleConfirm}>
+          <AlertDialogCancel className="cursor-pointer">Cancel</AlertDialogCancel>
+          <AlertDialogAction className="cursor-pointer" onClick={handleConfirm}>
                Continue
           </AlertDialogAction>
      </AlertDialogFooter>
