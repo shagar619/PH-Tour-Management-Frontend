@@ -13,26 +13,12 @@ import {
 } from "@/components/ui/sidebar";
 import { Link } from "react-router";
 import Logo from "@/assets/icons/Logo";
+import { adminSidebarItems } from "@/routes/adminSidebarItems";
+import { userSidebarItems } from "@/routes/userSidebarItems";
 
 // This is sample data.
 const data = {
-  versions: ["1.0.1", "1.1.0-alpha", "2.0.0-beta1"],
-  navMain: [
-    {
-      title: "Getting Started",
-      url: "#",
-      items: [
-        {
-          title: "Installation",
-          url: "#",
-        },
-        {
-          title: "Project Structure",
-          url: "#",
-        },
-      ],
-    },
-  ],
+  navMain: userSidebarItems
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
