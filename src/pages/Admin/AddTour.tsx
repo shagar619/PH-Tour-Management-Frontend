@@ -329,10 +329,12 @@ return (
                     <SelectContent>
                          {divisionOptions?.map(
                          (item: { label: string; value: string }) => (
-                         <SelectItem key={item.value} value={item.value}>
-                              {item.label}
-                              </SelectItem>
-                         )
+                    <SelectItem 
+                         key={item.value}    
+                         value={item.value}>
+                         {item.label}
+                    </SelectItem>
+                    )
                     )}
                     </SelectContent>
                     </Select>
@@ -359,14 +361,14 @@ return (
                     <SelectContent>
                          {tourTypeOptions?.map(
                          (option: { value: string; label: string }) => (
-                         <SelectItem
-                              key={option.value}
-                              value={option.value}
-                         >
-                              {option.label}
+                    <SelectItem
+                         key={option.value}
+                         value={option.value}
+                    >
+                         {option.label}
                     </SelectItem>
                          )
-                         )}
+                    )}
                     </SelectContent>
                     </Select>
                     <FormMessage />
@@ -402,7 +404,10 @@ return (
                )}
                />
           </div>
+
           <div className="flex gap-5">
+
+          {/* Start Date */}
                <FormField
                     control={form.control}
                     name="startDate"
@@ -415,16 +420,16 @@ return (
                     <Button
                          variant={"outline"}
                          className={cn(
-                              "w-full pl-3 text-left font-normal",
-                              !field.value && "text-muted-foreground"
-                              )}
+                         "w-full pl-3 text-left font-normal",
+                         !field.value && "text-muted-foreground"
+                         )}
                          >
-                              {field.value ? (
-                              format(field.value, "PPP")
-                              ) : (
+                         {field.value ? (
+                         format(field.value, "PPP")
+                         ) : (
                          <span>Pick a date</span>
-                              )}
-                         <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                         )}
+                    <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                     </Button>
                     </FormControl>
                     </PopoverTrigger>
@@ -434,19 +439,21 @@ return (
                          selected={new Date(field.value)}
                          onSelect={field.onChange}
                          disabled={(date) =>
-                              date <
-                              new Date(
-                              new Date().setDate(new Date().getDate() - 1)
-                              )
+                         date <
+                         new Date(
+                         new Date().setDate(new Date().getDate() - 1)
+                         )
                          }
-                              captionLayout="dropdown"
+                         captionLayout="dropdown"
                     />
                     </PopoverContent>
                     </Popover>
                     <FormMessage />
                     </FormItem>
                )}
-               />
+          />
+
+          {/* End Date */}
                <FormField
                     control={form.control}
                     name="endDate"
@@ -494,6 +501,8 @@ return (
           </div>
 
           <div className="flex gap-5 items-stretch">
+
+          {/* Description */}
                <FormField
                     control={form.control}
                     name="description"
@@ -506,12 +515,17 @@ return (
                     <FormMessage />
                     </FormItem>
                )}
-               />
+          />
+
+          {/* Images uploader */}
           <div className="flex-1 mt-5">
                <MultipleImageUploader onChange={setImages} />
           </div>
           </div>
-          <div className="border-t border-muted w-full "></div>
+          <div className="border-t border-muted w-full">
+          </div>
+
+          {/* included field */}
           <div>
           <div className="flex justify-between">
                <p className="font-semibold">Included</p>
@@ -521,40 +535,41 @@ return (
                     size="icon"
                     onClick={() => appendIncluded({ value: "" })}
                >
-                    <Plus />
+               <Plus />
                </Button>
           </div>
-
           <div className="space-y-4 mt-4">
                {includedFields.map((item, index) => (
-                    <div className="flex gap-2" key={item.id}>
+          <div className="flex gap-2" key={item.id}>
                <FormField
                     control={form.control}
                     name={`included.${index}.value`}
                     render={({ field }) => (
                     <FormItem className="flex-1">
                     <FormControl>
-                         <Input {...field} />
-                         </FormControl>
-                         <FormMessage />
-                         </FormItem>
+                    <Input {...field} />
+                    </FormControl>
+                    <FormMessage />
+                    </FormItem>
                     )}
                     />
                <Button
                     onClick={() => removeIncluded(index)}
                     variant="destructive"
-                    className="!bg-red-700"
+                    className="!bg-red-700 cursor-pointer"
                     size="icon"
                     type="button"
                >
-                    <Trash2 />
-                    </Button>
-                    </div>
+               <Trash2 />
+               </Button>
+               </div>
                ))}
                </div>
           </div>
 
           <div>
+
+          {/* Excluded field */}
           <div className="flex justify-between">
                <p className="font-semibold">Excluded</p>
                <Button
@@ -563,7 +578,7 @@ return (
                     size="icon"
                     onClick={() => appendExcluded({ value: "" })}
                >
-                    <Plus />
+               <Plus />
                </Button>
           </div>
 
@@ -585,7 +600,7 @@ return (
                <Button
                     onClick={() => removeExcluded(index)}
                     variant="destructive"
-                    className="!bg-red-700"
+                    className="!bg-red-700 cursor-pointer"
                     size="icon"
                     type="button"
           >
@@ -596,6 +611,8 @@ return (
           </div>
           </div>
 
+          
+          {/* Amenities field */}
           <div>
           <div className="flex justify-between">
                <p className="font-semibold">Amenities</p>
@@ -627,7 +644,7 @@ return (
                <Button
                     onClick={() => removeAmenities(index)}
                     variant="destructive"
-                    className="!bg-red-700"
+                    className="!bg-red-700 cursor-pointer"
                     size="icon"
                     type="button"
                >
@@ -637,7 +654,8 @@ return (
                ))}
                </div>
           </div>
-
+          
+          {/* Tour plan */}
           <div>
           <div className="flex justify-between">
                <p className="font-semibold">Tour Plan</p>
@@ -669,15 +687,15 @@ return (
                <Button
                     onClick={() => removeTourPlan(index)}
                     variant="destructive"
-                    className="!bg-red-700"
+                    className="!bg-red-700 cursor-pointer"
                     size="icon"
                     type="button"
           >
                <Trash2 />
                </Button>
-     </div>
+          </div>
           ))}
-               </div>
+          </div>
           </div>
           </form>
           </Form>
