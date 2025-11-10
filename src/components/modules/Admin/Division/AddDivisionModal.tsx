@@ -28,6 +28,7 @@ import { toast } from "sonner";
 
 
 export function AddDivisionModal() {
+
      const [open, setOpen] = useState(false);
      const [image, setImage] = useState<File | null>(null);
      const [addDivision] = useAddDivisionMutation();
@@ -41,6 +42,7 @@ export function AddDivisionModal() {
 });
 
      const onSubmit = async (data: any) => {
+          
      const formData = new FormData();
 
      formData.append("data", JSON.stringify(data));
