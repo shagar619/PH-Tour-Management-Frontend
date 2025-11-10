@@ -20,8 +20,11 @@ export const divisionApi = baseApi.injectEndpoints({
      providesTags: ["DIVISION"],
      transformResponse: (response) => response.data,
      }),
-     
+
 }),
 });
 
-export const { useAddDivisionMutation, useGetDivisionsQuery } = divisionApi;
+export const { 
+     useAddDivisionMutation, 
+     useGetDivisionsQuery 
+} = divisionApi;
