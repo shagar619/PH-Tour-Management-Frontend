@@ -1,3 +1,4 @@
+import MultipleImageUploader from "@/components/MultipleImageUploader";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {
@@ -31,7 +32,10 @@ import {
 } from "@/components/ui/select";
 
 import { Textarea } from "@/components/ui/textarea";
+import type { FileMetadata } from "@/hooks/use-file-upload";
 import { cn } from "@/lib/utils";
+import { useGetDivisionsQuery } from "@/redux/features/division/division.api";
+import { useAddTourMutation, useGetTourTypesQuery } from "@/redux/features/Tour/tour.api";
 import type { IErrorResponse } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format, formatISO } from "date-fns";
@@ -679,7 +683,7 @@ return (
           </Form>
      </CardContent>
      <CardFooter className="flex justify-end">
-          <Button type="submit" form="add-tour-form">
+          <Button type="submit" form="add-tour-form" className="cursor-pointer">
                Create Tour
           </Button>
      </CardFooter>
