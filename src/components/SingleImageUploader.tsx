@@ -31,7 +31,7 @@ useEffect(() => {
      } else {
      onChange(null);
      }
-}, [files]);
+}, [files, onChange]);
 
 const previewUrl = files[0]?.preview || null;
 
