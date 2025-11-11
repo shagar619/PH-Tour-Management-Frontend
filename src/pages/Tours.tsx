@@ -6,6 +6,7 @@ import { Link, useSearchParams } from "react-router";
 
 
 export default function Tours() {
+     
      const [searchParams] = useSearchParams();
 
      const division = searchParams.get("division") || undefined;

@@ -1,6 +1,7 @@
 import { DeleteConfirmation } from "@/components/DeleteConfirmation";
 import { AddTourTypeModal } from "@/components/modules/Admin/TourType/AddTourTypeModal";
 import { Button } from "@/components/ui/button";
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 import {
      Table,
      TableBody,
@@ -67,6 +68,51 @@ export default function AddTourType() {
           </TableBody>
      </Table>
      </div>
+
+     {/* pagination */}
+     {totalPage > 1 && (
+     <div className="flex justify-end mt-4">
+     <div>
+     <Pagination>
+          <PaginationContent>
+          <PaginationItem>
+          <PaginationPrevious
+               onClick={() => setCurrentPage((prev) => prev - 1)}
+               className={
+               currentPage === 1
+               ? "pointer-events-none opacity-50"
+               : "cursor-pointer"
+               }
+               />
+          </PaginationItem>
+               {Array.from({ length: totalPage }, (_, index) => index + 1).map(
+               (page) => (
+          <PaginationItem
+               key={page}
+               onClick={() => setCurrentPage(page)}
+          >
+          <PaginationLink 
+               isActive={currentPage === page}>
+               {page}
+          </PaginationLink>
+          </PaginationItem>
+          )
+          )}
+          <PaginationItem>
+          <PaginationNext
+               onClick={() => setCurrentPage((prev) => prev + 1)}
+               className={
+               currentPage === totalPage
+               ? "pointer-events-none opacity-50"
+               : "cursor-pointer"
+               }
+          />
+          </PaginationItem>
+          </PaginationContent>
+          </Pagination>
+     </div>
+     </div>
+)}
 </div>
 );
 }
