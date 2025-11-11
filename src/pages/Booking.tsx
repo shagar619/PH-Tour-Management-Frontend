@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "@/components/ui/button";
 import { useCreateBookingMutation } from "@/redux/features/booking/booking.api";
 import { useGetAllToursQuery } from "@/redux/features/Tour/tour.api";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { toast } from "sonner";
 
 
 
@@ -46,8 +48,8 @@ export default function Booking() {
      if (res.success) {
           window.open(res.data.paymentUrl);
      }
-     } catch (err) {
-          console.log(err);
+     } catch (err: any) {
+          toast.error(`${err.data.message}`);
      }
 };
 
@@ -135,9 +137,9 @@ export default function Booking() {
                <button
                     onClick={decrementGuest}
                     disabled={guestCount <= 1}
-                    className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center disabled:opacity-50"
+                    className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center disabled:opacity-50 cursor-pointer"
                     >
-                     -
+                    -
                </button>
                <span className="text-lg font-medium w-8 text-center">
                     {guestCount}
@@ -145,7 +147,7 @@ export default function Booking() {
                <button
                     onClick={incrementGuest}
                     disabled={guestCount >= tourData!.maxGuest}
-                    className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center disabled:opacity-50"
+                    className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center disabled:opacity-50 cursor-pointer"
                     >
                     +
                </button>
@@ -167,7 +169,7 @@ export default function Booking() {
           </div>
           </div>
 
-               <Button onClick={handleBooking} className="w-full" size="lg">
+               <Button onClick={handleBooking} className="w-full cursor-pointer" size="lg">
                     Book Now
                </Button>
           </div>
