@@ -240,6 +240,8 @@ return (
                className="space-y-5"
                onSubmit={form.handleSubmit(handleSubmit)}
           >
+
+          {/* title field */}
           <FormField
                control={form.control}
                name="title"
@@ -254,6 +256,8 @@ return (
                )}
           />
           <div className="flex gap-5">
+
+               {/* location field */}
                <FormField
                     control={form.control}
                     name="location"
@@ -267,6 +271,8 @@ return (
                     </FormItem>
                )}
                />
+
+               {/* costForm field */}
                <FormField
                     control={form.control}
                     name="costFrom"
@@ -282,6 +288,8 @@ return (
                />
           </div>
           <div className="flex gap-5">
+
+               {/* departureLocation field */}
                <FormField
                     control={form.control}
                     name="departureLocation"
@@ -295,6 +303,8 @@ return (
                     </FormItem>
                )}
                />
+
+               {/* arrivalLocation field */}
                <FormField
                     control={form.control}
                     name="arrivalLocation"
@@ -310,6 +320,8 @@ return (
                />
           </div>
           <div className="flex gap-5">
+
+               {/* division field */}
                <FormField
                     control={form.control}
                     name="division"
@@ -343,6 +355,8 @@ return (
                     </FormItem>
                )}
                />
+
+               {/* tour type field */}
                <FormField
                     control={form.control}
                     name="tourType"
@@ -377,6 +391,8 @@ return (
                />
           </div>
           <div className="flex gap-5">
+
+               {/* max guest field */}
                <FormField
                     control={form.control}
                     name="maxGuest"
@@ -390,6 +406,8 @@ return (
                     </FormItem>
                )}
                />
+
+               {/* min age field */}
                <FormField
                     control={form.control}
                     name="minAge"
@@ -502,7 +520,7 @@ return (
 
           <div className="flex gap-5 items-stretch">
 
-          {/* Description */}
+          {/* Description field */}
                <FormField
                     control={form.control}
                     name="description"
@@ -517,7 +535,7 @@ return (
                )}
           />
 
-          {/* Images uploader */}
+          {/* Images uploader field */}
           <div className="flex-1 mt-5">
                <MultipleImageUploader onChange={setImages} />
           </div>
@@ -655,7 +673,7 @@ return (
                </div>
           </div>
           
-          {/* Tour plan */}
+          {/* tour plan field */}
           <div>
           <div className="flex justify-between">
                <p className="font-semibold">Tour Plan</p>
