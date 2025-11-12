@@ -11,7 +11,7 @@ export interface ITourPackage {
      location: string;
      description: string;
      costFrom: number;
-     maxGuest: number;
+     maxGuests: number;
      minAge: number;
      division: string;
      tourType: string;

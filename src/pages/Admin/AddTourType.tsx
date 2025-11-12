@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { DeleteConfirmation } from "@/components/DeleteConfirmation";
 import { AddTourTypeModal } from "@/components/modules/Admin/TourType/AddTourTypeModal";
 import { Button } from "@/components/ui/button";
@@ -12,11 +13,15 @@ import {
 } from "@/components/ui/table";
 import { useGetTourTypesQuery, useRemoveTourTypeMutation } from "@/redux/features/Tour/tour.api";
 import { Trash2 } from "lucide-react";
+import { useState } from "react";
 import { toast } from "sonner";
 
 export default function AddTourType() {
 
-     const { data } = useGetTourTypesQuery(undefined);
+     const [currentPage, setCurrentPage] = useState(1);
+     const [limit, setLimit] = useState(5);
+
+     const { data } = useGetTourTypesQuery({ page: currentPage, limit });
      const [removeTourType] = useRemoveTourTypeMutation();
 
      const handleRemoveTourType = async (tourId: string) => {
@@ -29,10 +34,12 @@ export default function AddTourType() {
                if (res.success) {
                     toast.success("Removed", { id: toastId })
                }
-          } catch(error) {
-               console.log(error);
+          } catch(error: any) {
+               toast.error(`${error.data.message}`)
           }
      }
+
+     const totalPage = data?.meta?.totalPage || 1;
 
      return (
      <div className="w-full max-w-7xl mx-auto px-5">

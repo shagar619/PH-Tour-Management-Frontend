@@ -99,7 +99,7 @@ export default function Booking() {
                <strong>Tour Type:</strong> {tourData?.tourType}
           </div>
           <div>
-               <strong>Max Guests:</strong> {tourData?.maxGuest}
+               <strong>Max Guests:</strong> {tourData?.maxGuests}
           </div>
           </div>
           </div>
@@ -146,7 +146,7 @@ export default function Booking() {
                </span>
                <button
                     onClick={incrementGuest}
-                    disabled={guestCount >= tourData!.maxGuest}
+                    disabled={guestCount >= tourData!.maxGuests}
                     className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center disabled:opacity-50 cursor-pointer"
                     >
                     +
